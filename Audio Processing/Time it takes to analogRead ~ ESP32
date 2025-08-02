@@ -1,0 +1,30 @@
+#define MIC_PIN 18  // GPIO 18
+
+void setup() {
+  Serial.begin(115200);   // Use fast, reliable baud rate
+  delay(1000);            // Let Serial stabilize
+}
+
+void loop() {
+  // --- Measure analogRead() Duration ---
+  unsigned long timeBefore = micros();
+
+  int value = analogRead(MIC_PIN);  // Read from GPIO 18
+
+  unsigned long timeAfter = micros();
+
+  // --- Print Timing Info ---
+  Serial.print("Time before analogRead: ");
+  Serial.println(timeBefore);
+  Serial.print("Value: ");
+  Serial.println(value);
+  Serial.print("Time after analogRead: ");
+  Serial.println(timeAfter);
+  Serial.print("Elapsed time: ");
+  Serial.print(timeAfter - timeBefore);
+  Serial.println(" microseconds");
+
+  Serial.println("-----------");
+
+  delay(500);  // Optional: Wait half a second between samples
+}
