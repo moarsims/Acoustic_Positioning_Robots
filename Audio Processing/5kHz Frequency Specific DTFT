@@ -1,0 +1,35 @@
+/*The idea here was to use the Discrete Time Fourier Transform tailored to one frequency (5000Hz) to detect when a sound of that
+specific frequency landed on the microphone. Line 27 in the code has been finely tuned so that we get a sample rate of 10kHz as dictated
+by the Nyquist sampling theorem. This technique does not have a high enough frequency resolution and the arduino showed a high response
+to signals at 4 and 6 kHz*/
+
+const int analogPin = A0;           // Input pin for analog signal
+const unsigned long sampleInterval = 100; // Sampling interval in microseconds
+const int N = 200;                   // Number of samples
+
+void setup() {
+  Serial.begin(9600);
+
+  // Set ADC prescaler to 32: 16 MHz / 32 = 500 kHz
+  ADCSRA = (ADCSRA & 0b11111000) | 0x05;  // Prescaler = 32
+}
+
+void loop() {
+  float realPart = 0;  // move inside loop so it resets every time
+  int n = 0;
+
+  while (n < N) {
+    int raw = analogRead(A0);
+    float x = raw - 512;
+    float multiplier = (n % 2 == 0) ? 1.0 : -1.0;
+    realPart += x * multiplier;
+    n++;
+    delayMicroseconds(62); //Specific to an Arduino Uno to get a 10kHz sample rate
+  }
+
+  Serial.println(abs(realPart));
+
+  // Optional: Lock y-axis
+  Serial.println("min:-150");
+  Serial.println("max:150");
+}
