@@ -1,7 +1,7 @@
 # Acoustic_Positioning_Robots
 A Precise Positioning and Guidance System for Robots Using Acoustic Trilateration
 
-This is a project designed to precisely locate a robot inside an indoor environment tiled by a local coordinate system and control it to navigate that space. Basically indoor GPS with sound.
+This was my capstone final year undergraduate project. It was designed to precisely locate a robot inside an indoor environment tiled by a local coordinate system and control it to navigate that space. Basically indoor GPS with sound.
 
 The system consists of speakers mounted on robots and microphones mounted in stationary locations in the indoor environment (base stations).
 
