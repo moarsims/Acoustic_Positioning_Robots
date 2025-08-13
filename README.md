@@ -15,3 +15,7 @@ How it works is as follows:
 - The base station uses this elapsed time and the speed of sound to calculate the robot's distance
 
 Future development aims to increase the number of microphones inorder to actually locate the robot in 2D space.
+
+
+
+NB: Incomplete
